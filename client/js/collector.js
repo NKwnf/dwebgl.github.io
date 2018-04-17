@@ -29,7 +29,7 @@ var finishPage = function() {
 //  return null;
 //}
 //ip_address = "http://lab.songli.io/dy_debug";
-ip_address = "http://dwebgl.songli.io/uniquemachine";
+ip_address = "https://dwebgl.songli.io/uniquemachine";
 var Collector = function() {
   this.finalized = false;
   // all kinds of features
