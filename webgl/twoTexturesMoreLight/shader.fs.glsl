@@ -312,7 +312,7 @@ tri_p changevalue(tri_p t)
 //I - 2.0 * dot(N, I) * N
 ivec3 D_reflect(ivec3 x, ivec3 y)
 {
-	return ivec3(x[0] - division(2 * D_dot(x,y)*y[0],1000),x[1] - division(2 * D_dot(x,y)*y[1],1000), x[2] - division(2 * D_dot(x,y)*y[2],1000));
+  return ivec3(x[0] - 2 *  D_multiple(D_dot(x,y),y[0]),x[1] - 2 * D_multiple(D_dot(x,y),y[1]), x[2] - 2 * D_multiple(D_dot(x,y),y[2]);
 }
 
 int D_pow(int a, int b)
