@@ -8,7 +8,7 @@ var LineTest = function(type) {
             gl = getGLAA(canvas);
         }
         vetexID = 0;
-        var start = performance.now();
+
         function getPoints(){
             var res = [];
 
@@ -206,11 +206,11 @@ var LineTest = function(type) {
 
 
                     //gl.drawArrays(gl.LINES, 0, 6);
-                    var end = performance.now();
+
                     // dataURL = canvas.toDataURL('image/png', 1.0);
                     // console.log("Line test result:", calcSHA1(dataURL));
                     //console.log(dataURL);
-                    sender.getData(canvas, ID,end - start);
+                    sender.getData(canvas, ID);
                     cb(level);
                 }
                 // POINTS, LINE_STRIP, LINE_LOOP, LINES,

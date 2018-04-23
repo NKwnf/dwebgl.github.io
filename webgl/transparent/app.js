@@ -219,7 +219,6 @@ var TransparentTest = function (vertices, indices, texCoords, normals, texture) 
                 gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
                 //ctx.font = "48px";
                 var loop = function () {
-                    var start = performance.now();
                     var frame = requestAnimationFrame(loop);
                     angle = count++ / 20;
                     mat4.rotate(yRotationMatrix, identityMatrix, angle, [0, 1, 0]);
@@ -243,9 +242,8 @@ var TransparentTest = function (vertices, indices, texCoords, normals, texture) 
                     //ctx.fillText("Hello world", 9, 50);
 
                     if(count == 50){
-                        var end = performance.now();
                         cancelAnimationFrame(frame);
-                        sender.getData(canvas, parent.IDs[childNumber],end - start);
+                        sender.getData(canvas, parent.IDs[childNumber]);
                         parent.childComplete();
                     }
                 };

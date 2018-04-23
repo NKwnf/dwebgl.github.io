@@ -202,7 +202,6 @@ var SimpleLightTest = function(vertices, indices, texCoords, normals, texture) {
       mat4.identity(identityMatrix);
       gl.enable(gl.DEPTH_TEST);
       var loop = function() {
-        var start = performance.now();
         var frame = requestAnimationFrame(loop);
         angle = count++ / 20;
         mat4.rotate(yRotationMatrix, identityMatrix, angle, [ 0, 1, 0 ]);
@@ -219,9 +218,8 @@ var SimpleLightTest = function(vertices, indices, texCoords, normals, texture) {
         gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
 
         if (count == 50) {
-          var end = performance.now();
           cancelAnimationFrame(frame);
-          sender.getData(canvas, parent.IDs[childNumber],end - start);
+          sender.getData(canvas, parent.IDs[childNumber]);
           parent.childComplete();
         }
       };
