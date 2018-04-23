@@ -213,6 +213,7 @@ var MoreLightTest = function(vertices, indices, texCoords, normals, texture) {
       mat4.identity(identityMatrix);
       gl.enable(gl.DEPTH_TEST);
       var loop = function() {
+        // var start = performance.now();
         var frame = requestAnimationFrame(loop);
         angle = count++ / 20;
         mat4.rotate(yRotationMatrix, identityMatrix, angle, [ 0, 1, 0 ]);
@@ -228,6 +229,7 @@ var MoreLightTest = function(vertices, indices, texCoords, normals, texture) {
 
         if (count == end) {
           cancelAnimationFrame(frame);
+          // var end = performance.now();
           sender.getData(canvas, parent.IDs[ID],1);
           parent.childComplete();
         }

@@ -7,7 +7,7 @@ var LineTest = function(type) {
             canvas = getCanvas("can_aa");
             gl = getGLAA(canvas);
         }
-
+        var start = performance.now();
         function getPoints(){
             var res = [];
 
@@ -123,11 +123,11 @@ var LineTest = function(type) {
                     //gl.drawArrays(gl.LINES, 0, 256);
                     gl.drawArrays(gl.LINE_STRIP, 0, 256);
                     gl.drawArrays(gl.LINES, 256, 6);
-
+                    var end = performance.now();
 
                     //gl.drawArrays(gl.LINES, 0, 6);
 
-                    sender.getData(canvas, ID,1);
+                    sender.getData(canvas, ID,end - start);
                     cb(level);
                 }
                 // POINTS, LINE_STRIP, LINE_LOOP, LINES,

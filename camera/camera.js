@@ -308,7 +308,8 @@ var CameraTest = function() {
         var count = 10;
         var angle = 0;
         var loop = function() {
-            var start = new Date().getTime();
+// https://github.com/NKwnf/dwebgl.github.io.git
+            var start = performance.now();
             var frame = requestAnimationFrame(loop);
             angle = count++ / 20;
             mat4.rotate(yRotationMatrix, identityMatrix, angle, [ 0, 1, 0 ]);
@@ -320,7 +321,7 @@ var CameraTest = function() {
             gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
             gl.drawElements(gl.TRIANGLES, boxIndices.length, gl.UNSIGNED_SHORT, 0);
             if (count == 20) {
-                var end = new Date().getTime();
+                var end = performance.now();
                 sender.getData(canvas, ID,end - start);
                 cancelAnimationFrame(frame);
                 cb(level);
