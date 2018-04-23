@@ -290,9 +290,9 @@ int D_dot(ivec3 x, ivec3 y)
   int sum = 0;
   for (int i = 0; i < 3; i++)
   {
-    sum += x[i] * y[i];
+    sum += D_multiple(x[i], y[i]);
   }
-  return division(sum, 1000);
+  return sum;
 }
 
 tri_p changevalue(tri_p t)
