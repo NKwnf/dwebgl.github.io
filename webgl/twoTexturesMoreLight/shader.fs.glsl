@@ -235,7 +235,7 @@ vec3 col_transfer(ivec3 c){
 }
 
 ivec3 D_normalize(ivec3 a){
-  int rate = isqrt (division(100000000, a[0] * a[0] + a[1] * a[1] + a[2] * a[2])) ;
+  int rate = isqrt (division(100000, D_multiple(a[0],a[0]) + D_multiple(a[1],a[1]) + D_multiple(a[2],a[2]))) ;
   return ivec3(division(a[0] * rate, 10), division(a[1] * rate,10), division(a[2] * rate,10));
 }
 
