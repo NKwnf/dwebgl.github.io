@@ -486,7 +486,7 @@ Mat3 = (function() {
        for (var j = i * stride + offset; j < i * stride + offset + size; j++)
           newAttri.uniformData = newAttri.uniformData.concat(BufferData.bufferData[j]);
      }
-     console.log("newAttri",newAttri);
+     //console.log("newAttri",newAttri);
 
      // 将attribute加入map
      AttriDataMap.push(newAttri);
@@ -800,7 +800,7 @@ Mat3 = (function() {
         if (ProgramDataMap[activeProgramNum].attriData[i].shaderName == "coordinates")
           coordinates = ProgramDataMap[activeProgramNum].attriData[i].uniformData;          
       }
-      console.log("coordinates",coordinates);
+      //console.log("coordinates",coordinates);
       for (var i = 0; i <  255; i++){
         tem = tem.concat(coordinates[3 * i]);
         tem = tem.concat(coordinates[3 * i + 1]);
@@ -815,7 +815,7 @@ Mat3 = (function() {
         tem = tem.concat(coordinates[3 * i + 1]);
         tem = tem.concat(coordinates[3 * i + 2]);
       }
-      console.log("tem",tem);
+      //console.log("tem",tem);
 
       var newData1 = new varying_data;
       newData1.shaderName = "line_point";
@@ -823,12 +823,12 @@ Mat3 = (function() {
       newData1.uniformData = tem;
       for (var i =0; i < newData1.uniformData.length; i++)
         if (i % 3 != 2)
-          newData1.uniformData[i] = Math.floor(newData1.uniformData[i] * 1000);
+          newData1.uniformData[i] = Math.round(newData1.uniformData[i] * 1000);
         else
-          newData1.uniformData[i] = -1 * Math.floor(newData1.uniformData[i] * 1000);
+          newData1.uniformData[i] = -1 * Math.round(newData1.uniformData[i] * 1000);
       ProgramDataMap[activeProgramNum].varyingData.push(newData1);
       //关于那一条斜线的数据，可以认为处理掉，无所谓的
-      console.log("ProgramDataMap", ProgramDataMap);
+      //console.log("ProgramDataMap", ProgramDataMap);
       var canvas_buffer = [-1.0, -1.0, 
         1.0, -1.0, 
         -1.0,  1.0, 
@@ -844,7 +844,7 @@ Mat3 = (function() {
       gl.my_useProgram(activeProgram);
       var traingles_vex_loc = gl.my_getUniformLocation(activeProgram, "line_point");
       gl.my_uniform3iv(traingles_vex_loc, ProgramDataMap[activeProgramNum].varyingData[0].uniformData);
-      console.log("开始draw");
+      //console.log("开始draw");
       gl.my_drawArrays(gl.TRIANGLES, 0, 6);
 
       
@@ -896,9 +896,9 @@ Mat3 = (function() {
       newData1.uniformData = my_m4.vec_max_mul(vertPosition, mWorld);
       for (var i =0; i < newData1.uniformData.length; i++)
         if (i % 3 != 2)
-          newData1.uniformData[i] = Math.floor(newData1.uniformData[i] * 1000);
+          newData1.uniformData[i] = Math.round(newData1.uniformData[i] * 1000);
         else
-          newData1.uniformData[i] = -1 * Math.floor(newData1.uniformData[i] * 1000);
+          newData1.uniformData[i] = -1 * Math.round(newData1.uniformData[i] * 1000);
       ProgramDataMap[activeProgramNum].varyingData.push(newData1);
 
       var newData2 = new varying_data;
@@ -906,7 +906,7 @@ Mat3 = (function() {
       newData2.varyEleNum = 3;
       for (var i = 0; i < vertColor.length; i++){
         newData2.uniformData = newData2.uniformData.concat(vertColor[i]);
-        newData2.uniformData[i] = Math.floor(((newData2.uniformData[i] )) * 1000);
+        newData2.uniformData[i] = Math.round(((newData2.uniformData[i] )) * 1000);
       } 
       ProgramDataMap[activeProgramNum].varyingData.push(newData2);
 
@@ -931,7 +931,8 @@ Mat3 = (function() {
       gl.my_uniform1i(traingles_num_loc, ProgramDataMap[activeProgramNum].varyingData[0].uniformData.length/3);
       gl.my_uniform3iv(traingles_vex_loc, ProgramDataMap[activeProgramNum].varyingData[0].uniformData);
       gl.my_uniform3iv(traingles_fra_loc, ProgramDataMap[activeProgramNum].varyingData[1].uniformData);
-      console.log("开始画了");
+      //console.log("开始画了");
+      console.log("ProgramDataMap",ProgramDataMap);
       gl.my_drawArrays(gl.TRIANGLES, 0, 6);
 
 
@@ -981,8 +982,8 @@ Mat3 = (function() {
       mat4.mul(mView, mView, mProj);
       mat4.mul(mWorld, mWorld, mView);
 
-      console.log("mWorld_fs",mWorld_fs);
-      console.log("mView_fs",mView_fs);
+      // console.log("mWorld_fs",mWorld_fs);
+      // console.log("mView_fs",mView_fs);
 
       //进入计算阶段
       //手工去完成自动化的那部分
@@ -993,9 +994,9 @@ Mat3 = (function() {
       newData1.uniformData = my_m4.vec_max_mul(vertPosition, mWorld);
       for (var i =0; i < newData1.uniformData.length; i++)
         if (i % 3 != 2)
-          newData1.uniformData[i] = Math.floor(newData1.uniformData[i] * 1000);
+          newData1.uniformData[i] = Math.floor((newData1.uniformData[i] + 1) * 128);
         else
-          newData1.uniformData[i] = -1 * Math.floor(newData1.uniformData[i] * 1000);
+          newData1.uniformData[i] = -1 * Math.floor((newData1.uniformData[i] + 1) * 128);
       ProgramDataMap[activeProgramNum].varyingData.push(newData1);
 
 
@@ -1030,7 +1031,7 @@ Mat3 = (function() {
           newData3.uniformData = newData3.uniformData.concat((tem[i] * mWorld_fs[2] + tem[i+1] * mWorld_fs[6] + tem[i+2] * mWorld_fs[10])) ;
         }
         for (var i = 0; i < newData3.uniformData.length; i++)
-          newData3.uniformData[i] = Math.floor(((newData3.uniformData[i] )) * 1000);
+          newData3.uniformData[i] = Math.round(((newData3.uniformData[i] )) * 1000);
         ProgramDataMap[activeProgramNum].varyingData.push(newData3);
       }
       
@@ -1049,7 +1050,7 @@ Mat3 = (function() {
           newData4.uniformData = newData4.uniformData.concat((tem[i] * mView_fs[3] + tem[i+1] * mView_fs[7] + tem[i+2] * mView_fs[11]+  mView_fs[15]));
         }
         for (var i = 0; i < newData4.uniformData.length; i++)
-          newData4.uniformData[i] = Math.floor(((newData4.uniformData[i] )) * 1000);
+          newData4.uniformData[i] = Math.round(((newData4.uniformData[i] )) * 1000);
         ProgramDataMap[activeProgramNum].varyingData.push(newData4);
       }
 
@@ -1092,10 +1093,13 @@ Mat3 = (function() {
 
 
       //console.log("uniform的最大值",gl.getParameter(gl.MAX_VERTEX_UNIFORM_VECTORS));
-      //console.log("tem_varying",tem_varying);
+      console.log("tem_varying",tem_varying);
       //console.log("ProgramDataMap",ProgramDataMap);
       //console.log("数据准备完毕，开始画图");
-      devide_draw(-1000, 1000, tem_varying, gl);
+
+      //devide_draw(-1000, 1000, tem_varying, gl);
+
+      devide_draw(0, 255, tem_varying, gl);
 
 
       
@@ -1156,16 +1160,14 @@ function devide_draw(left, right, tem_varying, gl){
 
   if (left_number <= uniform_number){
     if (left_number > 0){
-      canvas_left = (left + 1000) / 2000 * 255;
-      canvas_mid = (mid + 1000) / 2000 * 255;
 
       var right_canvas_buffer = [
-        canvas_left * 2 / 255 - 1.0,     -1.0, 
-        canvas_mid * 2 / 255 - 1.0,      -1.0, 
-        canvas_left * 2 / 255 - 1.0,      1.0, 
-        canvas_left * 2 / 255 - 1.0,      1.0,
-        canvas_mid * 2 / 255 - 1.0,      -1.0, 
-        canvas_mid * 2 / 255 - 1.0,       1.0]; 
+        left * 2 / 255 - 1.0,     -1.0, 
+        mid * 2 / 255 - 1.0,      -1.0, 
+        left * 2 / 255 - 1.0,      1.0, 
+        left * 2 / 255 - 1.0,      1.0,
+        mid * 2 / 255 - 1.0,      -1.0, 
+        mid * 2 / 255 - 1.0,       1.0]; 
 
       var new_vertex_buffer = gl.createBuffer();
       gl.my_bindBuffer(gl.ARRAY_BUFFER, new_vertex_buffer);
@@ -1201,7 +1203,7 @@ function devide_draw(left, right, tem_varying, gl){
   else{
     if (mid == right){
 
-      devide_draw_height(left, right, -1000, 1000, tem_varying , gl);
+      devide_draw_height(left, right, 0, 255, tem_varying , gl);
       return;
     } 
     devide_draw(left, mid, left_varying, gl);
@@ -1209,15 +1211,13 @@ function devide_draw(left, right, tem_varying, gl){
 
   if (right_number <= uniform_number){
     if (right_number > 0){
-      canvas_right = (right + 1000) / 2000 * 255;
-      canvas_mid = (mid + 1000) / 2000 * 255;
       var right_canvas_buffer = [
-        canvas_mid * 2 / 255 - 1.0, -1.0, 
-        canvas_right * 2 / 255 - 1.0, -1.0, 
-        canvas_mid * 2 / 255 - 1.0,  1.0, 
-        canvas_mid * 2 / 255 - 1.0,  1.0,
-        canvas_right * 2 / 255 - 1.0, -1.0, 
-        canvas_right * 2 / 255 - 1.0,  1.0]; 
+        mid * 2 / 255 - 1.0, -1.0, 
+        right * 2 / 255 - 1.0, -1.0, 
+        mid * 2 / 255 - 1.0,  1.0, 
+        mid * 2 / 255 - 1.0,  1.0,
+        right * 2 / 255 - 1.0, -1.0, 
+        right * 2 / 255 - 1.0,  1.0]; 
       var new_vertex_buffer = gl.createBuffer();
       gl.my_bindBuffer(gl.ARRAY_BUFFER, new_vertex_buffer);
       gl.my_glbufferData(gl.ARRAY_BUFFER, new Float32Array(right_canvas_buffer), gl.STATIC_DRAW);
@@ -1251,7 +1251,7 @@ function devide_draw(left, right, tem_varying, gl){
   else{
     if (mid == left){
 
-      devide_draw_height(left, right, -1000, 1000, tem_varying, gl);
+      devide_draw_height(left, right, 0, 255, tem_varying, gl);
       
       return;
     } 
@@ -1310,17 +1310,13 @@ function devide_draw_height(left, right, bot, top, tem_varying, gl){
   if (bot_number <= uniform_number){
 
     if (bot_number > 0){
-      canvas_left = (left + 1000) / 2000 * 255;
-      canvas_mid = (mid + 1000) / 2000 * 255;
-      canvas_right = (right + 1000) / 2000 * 255;
-      canvas_bot = (bot + 1000) / 2000 * 255;
       var right_canvas_buffer = [
-        canvas_left * 2 / 255 - 1.0,   canvas_bot * 2 / 255 -1.0, 
-        canvas_right * 2 / 255 - 1.0,    canvas_bot * 2 / 255 -1.0, 
-        canvas_left * 2 / 255 - 1.0,    canvas_mid * 2 / 255 -1.0, 
-        canvas_left * 2 / 255 - 1.0,    canvas_mid * 2 / 255 -1.0,
-        canvas_right * 2 / 255 - 1.0,    canvas_bot * 2 / 255 -1.0, 
-        canvas_right * 2 / 255 - 1.0,    canvas_mid * 2 / 255 -1.0]; 
+        left * 2 / 255 - 1.0,   bot * 2 / 255 -1.0, 
+        right * 2 / 255 - 1.0,    bot * 2 / 255 -1.0, 
+        left * 2 / 255 - 1.0,    mid * 2 / 255 -1.0, 
+        left * 2 / 255 - 1.0,    mid * 2 / 255 -1.0,
+        right * 2 / 255 - 1.0,    bot * 2 / 255 -1.0, 
+        right * 2 / 255 - 1.0,    mid * 2 / 255 -1.0]; 
 
       var new_vertex_buffer = gl.createBuffer();
       gl.my_bindBuffer(gl.ARRAY_BUFFER, new_vertex_buffer);
@@ -1363,17 +1359,13 @@ function devide_draw_height(left, right, bot, top, tem_varying, gl){
   if (top_number <= uniform_number){
 
     if (top_number > 0){
-      canvas_left = (left + 1000) / 2000 * 255;
-      canvas_mid = (mid + 1000) / 2000 * 255;
-      canvas_right = (right + 1000) / 2000 * 255;
-      canvas_top = (top + 1000) / 2000 * 255;
       var right_canvas_buffer = [
-        canvas_left * 2 / 255 - 1.0, canvas_mid * 2 / 255 -1.0, 
-        canvas_right * 2 / 255 - 1.0,  canvas_mid * 2 / 255 -1.0, 
-        canvas_left * 2 / 255 - 1.0,  canvas_top * 2 / 255 -1.0, 
-        canvas_left * 2 / 255 - 1.0,  canvas_top * 2 / 255 -1.0,
-        canvas_right * 2 / 255 - 1.0,  canvas_mid * 2 / 255 -1.0, 
-        canvas_right * 2 / 255 - 1.0,  canvas_top * 2 / 255 -1.0]; 
+        left * 2 / 255 - 1.0, mid * 2 / 255 -1.0, 
+        right * 2 / 255 - 1.0,  mid * 2 / 255 -1.0, 
+        left * 2 / 255 - 1.0,  top * 2 / 255 -1.0, 
+        left * 2 / 255 - 1.0,  top * 2 / 255 -1.0,
+        right * 2 / 255 - 1.0,  mid * 2 / 255 -1.0, 
+        right * 2 / 255 - 1.0,  top * 2 / 255 -1.0]; 
 
 
       var new_vertex_buffer = gl.createBuffer();
@@ -1454,7 +1446,7 @@ BBB = function(primitiveType, offset, count){
       var line_buffer = [];
       for (var i =0; i < __ActiveBuffer_vertex.length; i++)
         if (i % 3 != 2)
-        __ActiveBuffer_vertex[i] = Math.floor(((__ActiveBuffer_vertex[i] + 1)) * 256 /2);
+        __ActiveBuffer_vertex[i] = Math.round(((__ActiveBuffer_vertex[i] + 1)) * 256 /2);
         else
         __ActiveBuffer_vertex[i] = -1 * __ActiveBuffer_vertex[i];
       for (var i = 0; i < count - 1; i++){
@@ -1498,7 +1490,7 @@ BBB = function(primitiveType, offset, count){
       /*
       for (var i =0; i < __ActiveBuffer_vertex.length; i++)
         if (i % 3 != 2)
-          __ActiveBuffer_vertex[i] = Math.floor(((__ActiveBuffer_vertex[i] + 1)) * 256 /2);
+          __ActiveBuffer_vertex[i] = Math.round(((__ActiveBuffer_vertex[i] + 1)) * 256 /2);
         else
           __ActiveBuffer_vertex[i] = -1 * __ActiveBuffer_vertex[i];
       */
@@ -1506,9 +1498,9 @@ BBB = function(primitiveType, offset, count){
       // 这是int版本的
       for (var i =0; i < __ActiveBuffer_vertex.length; i++)
         if (i % 3 != 2)
-          __ActiveBuffer_vertex[i] = Math.floor(((__ActiveBuffer_vertex[i] + 1)) * 256 /2);
+          __ActiveBuffer_vertex[i] = Math.round(((__ActiveBuffer_vertex[i] + 1)) * 256 /2);
         else
-          __ActiveBuffer_vertex[i] = -1 * Math.floor(((__ActiveBuffer_vertex[i] + 1)) * 256 /2);
+          __ActiveBuffer_vertex[i] = -1 * Math.round(((__ActiveBuffer_vertex[i] + 1)) * 256 /2);
 
       
       //console.log("转化成pixel的位置",__ActiveBuffer_vertex); 
@@ -1548,7 +1540,7 @@ BBB = function(primitiveType, offset, count){
     /*
       for (var i =0; i < __ActiveBuffer_vertex_result.length; i++)
         if (i % 3 != 2)
-          __ActiveBuffer_vertex_result[i] = Math.floor(((__ActiveBuffer_vertex_result[i] + 1)) * 256 /2);
+          __ActiveBuffer_vertex_result[i] = Math.round(((__ActiveBuffer_vertex_result[i] + 1)) * 256 /2);
         else
           __ActiveBuffer_vertex_result[i] = -1 * __ActiveBuffer_vertex_result[i];
     */
@@ -1556,24 +1548,24 @@ BBB = function(primitiveType, offset, count){
     //这个是int版本
     for (var i =0; i < __ActiveBuffer_vertex_result.length; i++)
       if (i % 3 != 2)
-        __ActiveBuffer_vertex_result[i] = Math.floor(((__ActiveBuffer_vertex_result[i] + 1)) * 256 /2);
+        __ActiveBuffer_vertex_result[i] = Math.round(((__ActiveBuffer_vertex_result[i] + 1)) * 256 /2);
       else
-        __ActiveBuffer_vertex_result[i] = -1 * Math.floor(((__ActiveBuffer_vertex_result[i] + 1)) * 256 /2);
+        __ActiveBuffer_vertex_result[i] = -1 * Math.round(((__ActiveBuffer_vertex_result[i] + 1)) * 256 /2);
 
       
     for (var i =0; i < __ActiveBuffer_vertex_texture.length; i++)
-      __ActiveBuffer_vertex_texture[i] = Math.floor(((__ActiveBuffer_vertex_texture[i] )) * 255);
+      __ActiveBuffer_vertex_texture[i] = Math.round(((__ActiveBuffer_vertex_texture[i] )) * 255);
 
     var t_nor = []; 
     if (__My_buffer_flag == 4){
-      console.log("mWorld_fs",mWorld_fs);
+      //console.log("mWorld_fs",mWorld_fs);
       for (var i =0; i < __ActiveBuffer_vertex_normal.length; i += 3){
         t_nor = t_nor.concat((__ActiveBuffer_vertex_normal[i] * mWorld_fs[0] + __ActiveBuffer_vertex_normal[i+1] * mWorld_fs[4] + __ActiveBuffer_vertex_normal[i+2] * mWorld_fs[8]));
         t_nor = t_nor.concat((__ActiveBuffer_vertex_normal[i] * mWorld_fs[1] + __ActiveBuffer_vertex_normal[i+1] * mWorld_fs[5] + __ActiveBuffer_vertex_normal[i+2] * mWorld_fs[9]) );
         t_nor = t_nor.concat((__ActiveBuffer_vertex_normal[i] * mWorld_fs[2] + __ActiveBuffer_vertex_normal[i+1] * mWorld_fs[6] + __ActiveBuffer_vertex_normal[i+2] * mWorld_fs[10])) ;
       }
       for (var i =0; i < __ActiveBuffer_vertex_normal.length; i++)
-        __ActiveBuffer_vertex_normal[i] = Math.floor(((t_nor[i] )) * 100);
+        __ActiveBuffer_vertex_normal[i] = Math.round(((t_nor[i] )) * 100);
       //__ActiveBuffer_vertex_normal = t_nor;
       
     }
@@ -1666,13 +1658,13 @@ BBB = function(primitiveType, offset, count){
 
       }
     }
-    console.log("__ActiveBuffer_vertex_result",__ActiveBuffer_vertex_result);
-    console.log("__ActiveBuffer_vertex_texture",__ActiveBuffer_vertex_texture);
-    console.log("__ActiveBuffer_vertex_normal",__ActiveBuffer_vertex_normal);
+    // console.log("__ActiveBuffer_vertex_result",__ActiveBuffer_vertex_result);
+    // console.log("__ActiveBuffer_vertex_texture",__ActiveBuffer_vertex_texture);
+    // console.log("__ActiveBuffer_vertex_normal",__ActiveBuffer_vertex_normal);
 
-    console.log("tri_result",tri_result);
-    console.log("tri_texture",tri_texture);
-    console.log("tri_normal",tri_normal);
+    // console.log("tri_result",tri_result);
+    // console.log("tri_texture",tri_texture);
+    // console.log("tri_normal",tri_normal);
 
 
 
