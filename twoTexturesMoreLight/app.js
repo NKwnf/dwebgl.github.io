@@ -241,7 +241,7 @@ var TwoTexturesMoreLightTest = function(vertices, indices, texCoords, normals, t
 
         if (count == 55) {
           cancelAnimationFrame(frame);
-          sender.getData(canvas, parent.IDs[ID]);
+          sender.getData(canvas, parent.IDs[ID],1);
           parent.childComplete();
         }
 

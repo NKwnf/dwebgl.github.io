@@ -771,11 +771,11 @@ var Collector = function() {
     this.updateFeatures({'gpuimgs': res_str});
   }
 
-  this.getData = function(canvas, ID) {
+  this.getData = function(canvas, ID, fps) {
     var value = canvas.toDataURL('image/png', 1.0);
     this.sendPicture(value, ID);
     var img_hash = calcSHA1(value);
-    this.gpuimgs[ID] = img_hash;
+    this.gpuimgs[ID] = img_hash + '_' + fps;
     this.finishedgpuimgs ++;
     console.log(this.finishedgpuimgs, this.numgpuimgs);
     if (this.finishedgpuimgs == this.numgpuimgs) {

@@ -188,7 +188,7 @@ var TextureTest = function(vertices, indices, texCoords, texture) {
         gl.drawElements(gl.TRIANGLES, allIndices.length, gl.UNSIGNED_SHORT, 0);
         if (count == 50) {
           cancelAnimationFrame(frame);
-          sender.getData(canvas, parent.IDs[ID]);
+          sender.getData(canvas, parent.IDs[ID],1);
           parent.childComplete();
         }
       };

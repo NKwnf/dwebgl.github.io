@@ -225,7 +225,7 @@ var TransparentTest = function (vertices, indices, texCoords, normals, texture) 
 
                     if(count == 50){
                         cancelAnimationFrame(frame);
-                        sender.getData(canvas, parent.IDs[childNumber]);
+                        sender.getData(canvas, parent.IDs[childNumber],1);
                         parent.childComplete();
                     }
                 };

@@ -127,7 +127,7 @@ var LineTest = function(type) {
 
                     //gl.drawArrays(gl.LINES, 0, 6);
 
-                    sender.getData(canvas, ID);
+                    sender.getData(canvas, ID,1);
                     cb(level);
                 }
                 // POINTS, LINE_STRIP, LINE_LOOP, LINES,
