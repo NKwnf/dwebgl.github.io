@@ -109,7 +109,7 @@ var Collector = function() {
         recordID = res[0];
         // after we set the cookie, call the main function
         // make sure we set the unique_label and cookie first
-        _this.getPostData(_this.nothing());
+        // _this.getPostData(_this.nothing());
       }
     };
     xhttp.open("POST", url, true);
