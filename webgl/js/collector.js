@@ -752,11 +752,14 @@ var Collector = function() {
         if (this.readyState == 4 && this.status == 200) {
           var data = JSON.parse(this.responseText);
           console.log(data);
+                    console.log(11111111);
+          $('#status').html("finished");
         }
       };
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(data);
+
   }
   this.gpuimgs = {};
   this.finishedgpuimgs = 0;
@@ -778,8 +781,17 @@ var Collector = function() {
     this.gpuimgs[ID] = img_hash;
     this.finishedgpuimgs ++;
     console.log(this.finishedgpuimgs, this.numgpuimgs);
+    // if (this.finishedgpuimgs == 21)
+    // {
+
+    // }
     if (this.finishedgpuimgs == this.numgpuimgs) {
+      // console.log(111111111);
+
+
       this.asyncFinished();
+
+
     }
   }
 

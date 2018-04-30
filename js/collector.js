@@ -18,6 +18,7 @@ var finishPage = function() {
   xhttp.open("POST", url, true);
   xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhttp.send(data);
+
 }
 
 //window.onbeforeunload = function() {
@@ -757,6 +758,7 @@ var Collector = function() {
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(data);
+
   }
   this.gpuimgs = {};
   this.finishedgpuimgs = 0;
