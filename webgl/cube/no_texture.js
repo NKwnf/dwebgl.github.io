@@ -70,7 +70,7 @@ void main()
   init;
   for (int i = 0; i < uniformNumber; i+= 3){
     assign;
-    changePosition;
+    //changePosition;
     if ( pixel_on_triangle ){
         cal_Zbuffer;
       if ( draw_pixel ){
@@ -468,7 +468,7 @@ var CubeTest = function(type) {
         3 * Float32Array.BYTES_PER_ELEMENT  // Offset from the beginning of a
                                             // single vertex to this attribute
         );
-        console.log("Float32Array.BYTES_PER_ELEMENT",Float32Array.BYTES_PER_ELEMENT);
+        // console.log("Float32Array.BYTES_PER_ELEMENT",Float32Array.BYTES_PER_ELEMENT);
 
     gl.enableVertexAttribArray(positionAttribLocation);
     gl.enableVertexAttribArray(colorAttribLocation);

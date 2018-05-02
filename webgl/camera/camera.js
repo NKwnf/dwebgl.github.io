@@ -6,7 +6,7 @@ var vertCode =
    'gl_PointSize = 1.0;'+
 '}';
 
-var fragCode =`
+var fragCod1e =`
 precision mediump float;
 #define uniformNumber 336
 uniform ivec3 tri_point[333];
@@ -299,29 +299,28 @@ tri_p changevalue(tri_p t)
 
 
 
-`
-;
+`;
 
-var CameraTest = function() {
-    var ID = sender.getID();
-    this.begin = function(canvas, cb, level) {
+//'gl_FragColor = vec4(wei_1 * r1 + wei_2 * r2 + wei_3 * r3, wei_1 * g1 + wei_2 * g2 + wei_3 * g3, wei_1 * b1 + wei_2 * b2 + wei_3 * b3, 1.0);'+
+var CameraTest = function(type) {
+  var ID = sender.getID();
+  this.begin = function(canvas, cb, level) {
         var gl = getGL(canvas);
-/*
-        __texture_flag = 0;
-    __My_index_flag = 0;  
-    __PointBuffer = [];
-    __ColorBuffer = [];
-    __Tem_pointbuffer = [];
-    __Tem_colorbuffer = [];
-    __ActiveBuffer_vertex = [];
-    __ActiveBuffer_frag = [];
-    __ColorFlag = 1;  // 0代表不需要颜色，1代表需要颜色。
-    __Mworld_flag = 1;
-    __Mview_flag = 1;
-    __Mpro_flag = 1;
-    __Drawnumber = 1
-    */
-   vetexID = 1;
+    // __texture_flag = 0;
+    // __My_index_flag = 0;  
+    // __PointBuffer = [];
+    // __ColorBuffer = [];
+    // __Tem_pointbuffer = [];
+    // __Tem_colorbuffer = [];
+    // __ActiveBuffer_vertex = [];
+    // __ActiveBuffer_frag = [];
+    // __ColorFlag = 1;  // 0代表不需要颜色，1代表需要颜色。
+    // __Mworld_flag = 1;
+    // __Mview_flag = 1;
+    // __Mpro_flag = 1;
+    // __Drawnumber = 1
+
+    vetexID = 1;
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -337,7 +336,7 @@ var CameraTest = function() {
     var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
 
     gl.shaderSource(vertexShader, vertCode);
-    gl.shaderSource(fragmentShader, fragCode);
+    gl.shaderSource(fragmentShader, fragCod1e);
 
     gl.compileShader(vertexShader);
     if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
@@ -430,9 +429,7 @@ var CameraTest = function() {
       // Bottom
       21, 20, 22, 22, 20, 23
     ];
-/*  
 
-    var boxIndices = [0, 1, 2, 0, 2, 3,3]; */ 
     var boxVertexBufferObject = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, boxVertexBufferObject);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(boxVertices), gl.STATIC_DRAW);
@@ -441,6 +438,7 @@ var CameraTest = function() {
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, boxIndexBufferObject);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(boxIndices),
                   gl.STATIC_DRAW);
+
 
     //出现了这种特殊情况，需要加入这种特殊情况
     gl.bindBuffer(gl.ARRAY_BUFFER, boxVertexBufferObject);
@@ -463,6 +461,7 @@ var CameraTest = function() {
         3 * Float32Array.BYTES_PER_ELEMENT  // Offset from the beginning of a
                                             // single vertex to this attribute
         );
+        console.log("Float32Array.BYTES_PER_ELEMENT",Float32Array.BYTES_PER_ELEMENT);
 
     gl.enableVertexAttribArray(positionAttribLocation);
     gl.enableVertexAttribArray(colorAttribLocation);
@@ -478,19 +477,17 @@ var CameraTest = function() {
     var viewMatrix = new Float32Array(16);
     var projMatrix = new Float32Array(16);
     mat4.identity(worldMatrix);
-    mat4.lookAt(viewMatrix, [ 2,1,-5 ], [ 0, 0, 0 ], [ 0, 1, 0 ]);
+    mat4.lookAt(viewMatrix, [ 2, 1, -5 ], [ 0, 0, 0 ], [ 0, 1, 0 ]);
     mat4.perspective(projMatrix, glMatrix.toRadian(45),
                      canvas.width / canvas.height, 0.1, 1000.0);
     //mat4.transpose(viewMatrix, viewMatrix);
     //mat4.transpose(projMatrix, projMatrix);
-
     // mat4.copy(__Mworld, worldMatrix);
     // mat4.copy(__Mview,viewMatrix);
     // mat4.copy(__Matrix0,projMatrix);
     // mat4.identity(worldMatrix);
     // mat4.identity(viewMatrix);
     // mat4.identity(projMatrix);
-
     //console.log("worldMatrix", worldMatrix);
     //console.log("viewMatrix", viewMatrix);
     //console.log("projMatrix", projMatrix);
@@ -518,13 +515,13 @@ var CameraTest = function() {
       mat4.rotate(yRotationMatrix, identityMatrix, angle, [ 0, 1, 0 ]);
       mat4.rotate(xRotationMatrix, identityMatrix, angle / 4, [ 1, 0, 0 ]);
       mat4.mul(worldMatrix, yRotationMatrix, xRotationMatrix);
-    //   mat4.copy(__Mworld, worldMatrix);
-    //   mat4.transpose(__Mworld, __Mworld);
-    //   mat4.transpose(__Mview, __Mview);
-    //   mat4.transpose(__Matrix0, __Matrix0);
-    //   mat4.mul(__Mview, __Mview, __Matrix0);
+      // mat4.copy(__Mworld, worldMatrix);
+      // mat4.transpose(__Mworld, __Mworld);
+      // mat4.transpose(__Mview, __Mview);
+      // mat4.transpose(__Matrix0, __Matrix0);
+      // mat4.mul(__Mview, __Mview, __Matrix0);
       //console.log("第一次计算", __Mview);
-      //mat4.mul(__Mworld, __Mworld, __Mview);
+      // mat4.mul(__Mworld, __Mworld, __Mview);
       //console.log("传入的矩阵", __Mworld);
       /*
       console.log("第二次计算", __Mworld);
@@ -535,22 +532,24 @@ var CameraTest = function() {
       console.log("最终结果", worldMatrix);
       */
       gl.uniformMatrix4fv(matWorldUniformLocation, gl.FALSE, worldMatrix);
-      //__Matrix1 = my_m4.projection(gl.canvas.clientWidth, gl.canvas.clientHeight, 256);
+      // __Matrix1 = my_m4.projection(gl.canvas.clientWidth, gl.canvas.clientHeight, 256);
       //console.log("__Mworld", __Mworld);
       //console.log("__Mview", __Mview);
       //console.log("__Matrix0", __Matrix0);
 
 
-
+      //console.log("aaaaaaaaaaaa");
       //    gl.clearColor(1.0, 1.0, 1.0, 1.0);
       gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
       gl.drawElements(gl.TRIANGLES, boxIndices.length, gl.UNSIGNED_SHORT, 0);
-        if (count == 20) {
+      if (count == 20) {
                 sender.getData(canvas, ID);
                 cancelAnimationFrame(frame);
                 cb(level);
-            }
-        };
-        requestAnimationFrame(loop);
+      }
+      
     };
+    requestAnimationFrame(loop);
+  };
 };
+

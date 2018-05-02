@@ -69,7 +69,7 @@ void main()
         cal_Zbuffer;
       if ( draw_pixel ){
         renew_Zbuffer;
-        ivec3 vertNormal = ivec3 ( division(wei_1 * nor_point[i][0] + wei_2 * nor_point[i+1][0] + wei_3 * nor_point[i+2][0], 1000)   , division(wei_1 * nor_point[i][1] + wei_2 * nor_point[i+1][1] + wei_3 * nor_point[i+2][1] , 1000) , division(wei_1 * nor_point[i][2] + wei_2 * nor_point[i+1][2] + wei_3 * nor_point[i+2][2],1000)    );
+        ivec3 vertNormal = ivec3 ( D_multiple(wei_1 , nor_point[i][0]) +  D_multiple(wei_2 , nor_point[i+1][0]) +  D_multiple(wei_3 , nor_point[i+2][0])   ,  D_multiple(wei_1 , nor_point[i][1]) +  D_multiple(wei_2 , nor_point[i+1][1]) +  D_multiple(wei_3 , nor_point[i+2][1]) ,  D_multiple(wei_1 , nor_point[i][2]) +  D_multiple(wei_2 , nor_point[i+1][2]) +  D_multiple(wei_3 , nor_point[i+2][2])   );
         ivec4 texel = D_texture2D(sampler, fragTexCoord);
 		  	ivec3 normSunDir = D_normalize(sun.direction);
         ivec3 lightIntensity = ambientLightIntensity + D_multiple(sun.color, D_max(D_dot(vertNormal, normSunDir), 0));
@@ -205,7 +205,7 @@ vec4 col_transfer(ivec3 c, int a){
 }
 
 ivec3 D_normalize(ivec3 a){
-  int rate = isqrt (division(100000000, a[0] * a[0] + a[1] * a[1] + a[2] * a[2])) ;
+  int rate = isqrt (division(100000, D_multiple(a[0],a[0]) + D_multiple(a[1],a[1]) + D_multiple(a[2],a[2]))) ;
   return ivec3(division(a[0] * rate, 10), division(a[1] * rate,10), division(a[2] * rate,10));
 }
 

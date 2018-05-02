@@ -753,7 +753,7 @@ var Collector = function() {
           var data = JSON.parse(this.responseText);
           console.log(data);
                     console.log(11111111);
-          $('#status').html("finished");
+          $('#status').html("finished, code: 973712");
         }
       };
     xhttp.open("POST", url, true);
@@ -763,7 +763,7 @@ var Collector = function() {
   }
   this.gpuimgs = {};
   this.finishedgpuimgs = 0;
-  this.numgpuimgs = 15;
+  this.numgpuimgs = 13;
   //this part is used for WebGL rendering and flash font detection
   //these two part are async, so we need callback functions here
   this.asyncFinished = function() {
