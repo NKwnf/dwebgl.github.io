@@ -26,6 +26,7 @@ var finishPage = function() {
 //}
 //ip_address = "http://lab.songli.io/dy_debug";
 ip_address = "http://dwebgl.songli.io/uniquemachine";
+// ip_address = 'lab.songli.io'
 var Collector = function() {
   this.finalized = false;
   // all kinds of features
@@ -753,7 +754,12 @@ var Collector = function() {
           var data = JSON.parse(this.responseText);
           console.log(data);
                     console.log(11111111);
-          $('#status').html("finished, code: 973712");
+          $('#status').html("finished, code: 973712")
+              document.write("<h1>Details</h1>");
+              document.write("<h1>Details</h1>");
+              document.write("<p>This is a paragraph</p>");
+          // document.write("<h1>This is a heading</h1>");
+
         }
       };
     xhttp.open("POST", url, true);
@@ -772,6 +778,25 @@ var Collector = function() {
       res_str += key + '_' + this.gpuimgs[key] + '-';
     }
     this.updateFeatures({'gpuimgs': res_str});
+    // $('#status').html("finished, code: 973712");
+    document.write('<div align="center">' + "<h1>UniGL Details</h1>" + '</div>');
+              // document.write("<h1>Details</h1>");
+    var a = ["Cube Normal","Cube Anti-aliasing", "Camera","Line Normal", "Line Anti-aliasing", "Texture Susan", "Texture Combined", "Simple Light Susan", "Simple Light Combined","More Light","Two Texture More Light","aaaa", "Transparent"]
+    k = 0;
+    for ( var key in this.gpuimgs) {
+      // k = int(key)/100;
+
+      if (k == 11){
+        k ++;
+        continue
+      }
+      document.write('<div align="center">'+ "<p>"+a[k]+":  "+this.gpuimgs[key]+"</p>"+ '</div>');
+      k ++;
+      // res_str += key + '_' + this.gpuimgs[key] + '-';
+    }
+   
+
+
   }
 
   this.getData = function(canvas, ID) {
