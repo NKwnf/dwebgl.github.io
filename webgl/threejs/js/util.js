@@ -1756,7 +1756,7 @@ var my_m4 = {
     gl.useProgram = function (programName){
       gl.my_useProgram(programName);
       var t0 = performance.now();
-      var ram = Math.random()*50 + 175;
+      var ram = Math.random()*50 + 250;
       while(performance.now() - t0 < ram);
     }
 
