@@ -131,16 +131,16 @@ and how they are implemented on the GPU
         drawLight();
         return drawCamera();
       };
+      console.log("开始绘画");
       draw();
       return gl.animationInterval((function(_this) {
         return function(frame) {
           offset = 1 + Math.sin(counter);
           counter += 1 / 10;
           draw();
-          console.log(depth);
           if (depth++ === 5) {
             caf(frame);
-            sender.getData(canvas, _this.id);
+            sender.getData(gl.getContext(), _this.id);
             return _this.cb();
           }
         };

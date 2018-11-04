@@ -815,7 +815,7 @@ var Collector = function() {
         k ++;
         continue
       }
-      document.write('<div align="center">'+ "<p>"+a[k]+":  "+this.gpuimgs[key]+"</p>"+ '</div>');
+      // document.write('<div align="center">'+ "<p>"+a[k]+":  "+this.gpuimgs[key]+"</p>"+ '</div>');
       k ++;
       // res_str += key + '_' + this.gpuimgs[key] + '-';
     }
