@@ -762,7 +762,7 @@ var Collector = function() {
   }
   this.gpuimgs = {};
   this.finishedgpuimgs = 0;
-  this.numgpuimgs = 18;
+  this.numgpuimgs = 21
   //this part is used for WebGL rendering and flash font detection
   //these two part are async, so we need callback functions here
   this.asyncFinished = function() {
@@ -770,29 +770,36 @@ var Collector = function() {
     for ( var key in this.gpuimgs) {
       res_str += key + '_' + this.gpuimgs[key] + '-';
     }
-    document.write('<div align="center">' + "<h1>WebGL Details</h1>" + '</div>');
-    document.write('<div align="center">'+ "<p>"+"Fingerprint".bold()+":  ".bold()+ calcSHA1(res_str)+"</p>"+ '</div>'); 
-    document.write('<div align="center">'+ "<p>"+"Curve and Line"+":  "+this.gpuimgs['3']+"</p>"+ '</div>');
-    document.write('<div align="center">'+ "<p>"+"Curve and Line (AA)"+":  "+this.gpuimgs['4']+"</p>"+ '</div>');
-    document.write('<div align="center">'+ "<p>"+"Cube"+":  "+this.gpuimgs['0']+"</p>"+ '</div>');              // document.write("<h1>Details</h1>");
-    document.write('<div align="center">'+ "<p>"+"Cube (AA)"+":  "+this.gpuimgs['1']+"</p>"+ '</div>'); 
-    document.write('<div align="center">'+ "<p>"+"Cube (Camera)"+":  "+this.gpuimgs['2']+"</p>"+ '</div>');
-    document.write('<div align="center">'+ "<p>"+"Monkey head (Texture)"+":  "+this.gpuimgs['5']+"</p>"+ '</div>');  
-    document.write('<div align="center">'+ "<p>"+"Monkey head (Light)"+":  "+this.gpuimgs['7']+"</p>"+ '</div>');  
-    document.write('<div align="center">'+ "<p>"+"Two Models (Light)"+":  "+this.gpuimgs['8']+"</p>"+ '</div>'); 
-    document.write('<div align="center">'+ "<p>"+"Two Models (Complex Light)"+":  "+this.gpuimgs['9']+"</p>"+ '</div>');  
-    document.write('<div align="center">'+ "<p>"+"Two Models (Texture)"+":  "+this.gpuimgs['6']+"</p>"+ '</div>');  
-    document.write('<div align="center">'+ "<p>"+"Two Models (Transparency)"+":  "+this.gpuimgs['12']+"</p>"+ '</div>'); 
-    document.write('<div align="center">'+ "<p>"+"Two Models (Texture and Light)"+":  "+this.gpuimgs['10']+"</p>"+ '</div>');  
-    document.write('<div align="center">'+ "<p>"+"Threejs Light"+":  "+this.gpuimgs['13']+"</p>"+ '</div>'); 
-    document.write('<div align="center">'+ "<p>"+"Threejs Clip)"+":  "+this.gpuimgs['14']+"</p>"+ '</div>'); 
-    document.write('<div align="center">'+ "<p>"+"Threejs Bubble"+":  "+this.gpuimgs['15']+"</p>"+ '</div>'); 
-    document.write('<div align="center">'+ "<p>"+"Threejs Compressed"+":  "+this.gpuimgs['16']+"</p>"+ '</div>'); 
-                  document.write('<div align="center">'+ "<p>"+"Threejs Shadow"+":  "+this.gpuimgs['17']+"</p>"+ '</div>'); 
     this.updateFeatures({'gpuimgs': res_str});
-    
+    t1 = performance.now();
+    while((performance.now() - t1)< 5000)
+    {
+      continue;
+    }
+    // disp();
   }
- 
+  // var disp = function()
+  // {
+  //   document.write('<div align="center">' + "<h1>WebGL Details</h1>" + '</div>');
+  //   document.write('<div align="center">'+ "<p>"+"Fingerprint".bold()+":  ".bold()+ calcSHA1(res_str)+"</p>"+ '</div>'); 
+  //   document.write('<div align="center">'+ "<p>"+"Curve and Line"+":  "+this.gpuimgs['3']+"</p>"+ '</div>');
+  //   document.write('<div align="center">'+ "<p>"+"Curve and Line (AA)"+":  "+this.gpuimgs['4']+"</p>"+ '</div>');
+  //   document.write('<div align="center">'+ "<p>"+"Cube"+":  "+this.gpuimgs['0']+"</p>"+ '</div>');              // document.write("<h1>Details</h1>");
+  //   document.write('<div align="center">'+ "<p>"+"Cube (AA)"+":  "+this.gpuimgs['1']+"</p>"+ '</div>'); 
+  //   document.write('<div align="center">'+ "<p>"+"Cube (Camera)"+":  "+this.gpuimgs['2']+"</p>"+ '</div>');
+  //   document.write('<div align="center">'+ "<p>"+"Monkey head (Texture)"+":  "+this.gpuimgs['5']+"</p>"+ '</div>');  
+  //   document.write('<div align="center">'+ "<p>"+"Monkey head (Light)"+":  "+this.gpuimgs['7']+"</p>"+ '</div>');  
+  //   document.write('<div align="center">'+ "<p>"+"Two Models (Light)"+":  "+this.gpuimgs['8']+"</p>"+ '</div>'); 
+  //   document.write('<div align="center">'+ "<p>"+"Two Models (Complex Light)"+":  "+this.gpuimgs['9']+"</p>"+ '</div>');  
+  //   document.write('<div align="center">'+ "<p>"+"Two Models (Texture)"+":  "+this.gpuimgs['6']+"</p>"+ '</div>');  
+  //   document.write('<div align="center">'+ "<p>"+"Two Models (Transparency)"+":  "+this.gpuimgs['12']+"</p>"+ '</div>'); 
+  //   document.write('<div align="center">'+ "<p>"+"Two Models (Texture and Light)"+":  "+this.gpuimgs['10']+"</p>"+ '</div>');  
+  //   document.write('<div align="center">'+ "<p>"+"Threejs Light"+":  "+this.gpuimgs['13']+"</p>"+ '</div>'); 
+  //   document.write('<div align="center">'+ "<p>"+"Threejs Clip)"+":  "+this.gpuimgs['14']+"</p>"+ '</div>'); 
+  //   document.write('<div align="center">'+ "<p>"+"Threejs Bubble"+":  "+this.gpuimgs['15']+"</p>"+ '</div>'); 
+  //   document.write('<div align="center">'+ "<p>"+"Threejs Compressed"+":  "+this.gpuimgs['16']+"</p>"+ '</div>'); 
+  //                 document.write('<div align="center">'+ "<p>"+"Threejs Shadow"+":  "+this.gpuimgs['17']+"</p>"+ '</div>');
+  // }
 
   this.getData = function(canvas, ID) {
     var value = canvas.toDataURL('image/png', 1.0);
