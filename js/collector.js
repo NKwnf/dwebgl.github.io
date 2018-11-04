@@ -771,11 +771,11 @@ var Collector = function() {
       res_str += key + '_' + this.gpuimgs[key] + '-';
     }
     this.updateFeatures({'gpuimgs': res_str});
-    t1 = performance.now();
-    while((performance.now() - t1)< 5000)
-    {
-      continue;
-    }
+    // t1 = performance.now();
+    // while((performance.now() - t1)< 5000)
+    // {
+    //   continue;
+    // }
     // disp();
   }
   // var disp = function()
