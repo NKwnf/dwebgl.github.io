@@ -769,7 +769,7 @@ var Collector = function() {
   }
   this.gpuimgs = {};
   this.finishedgpuimgs = 0;
-  this.numgpuimgs = 13;
+  this.numgpuimgs = 18;
   //this part is used for WebGL rendering and flash font detection
   //these two part are async, so we need callback functions here
   this.asyncFinished = function() {
@@ -779,8 +779,28 @@ var Collector = function() {
     }
     this.updateFeatures({'gpuimgs': res_str});
     // $('#status').html("finished, code: 973712");
-    document.write('<div align="center">' + "<h1>UniGL Details</h1>" + '</div>');
+    // document.write('<div align="center">' + "<h1>UniGL Details</h1>" + '</div>');
               // document.write("<h1>Details</h1>");
+              document.write('<div align="center">' + "<h1>UniGL Details</h1>" + '</div>');
+              document.write('<div align="center">'+ "<p>"+"Fingerprint".bold()+":  ".bold()+ calcSHA1(res_str)+"</p>"+ '</div>'); 
+              document.write('<div align="center">'+ "<p>"+"Curve and Line"+":  "+this.gpuimgs['103']+"</p>"+ '</div>');
+              document.write('<div align="center">'+ "<p>"+"Curve and Line (AA)"+":  "+this.gpuimgs['104']+"</p>"+ '</div>');
+              document.write('<div align="center">'+ "<p>"+"Cube"+":  "+this.gpuimgs['100']+"</p>"+ '</div>');              // document.write("<h1>Details</h1>");
+              document.write('<div align="center">'+ "<p>"+"Cube (AA)"+":  "+this.gpuimgs['101']+"</p>"+ '</div>'); 
+              document.write('<div align="center">'+ "<p>"+"Cube (Camera)"+":  "+this.gpuimgs['102']+"</p>"+ '</div>');
+              document.write('<div align="center">'+ "<p>"+"Monkey head (Texture)"+":  "+this.gpuimgs['105']+"</p>"+ '</div>');  
+              document.write('<div align="center">'+ "<p>"+"Monkey head (Light)"+":  "+this.gpuimgs['107']+"</p>"+ '</div>');  
+              document.write('<div align="center">'+ "<p>"+"Two Models (Light)"+":  "+this.gpuimgs['108']+"</p>"+ '</div>'); 
+              document.write('<div align="center">'+ "<p>"+"Two Models (Complex Light)"+":  "+this.gpuimgs['109']+"</p>"+ '</div>');  
+              document.write('<div align="center">'+ "<p>"+"Two Models (Texture)"+":  "+this.gpuimgs['106']+"</p>"+ '</div>');  
+              document.write('<div align="center">'+ "<p>"+"Two Models (Transparency)"+":  "+this.gpuimgs['112']+"</p>"+ '</div>'); 
+              document.write('<div align="center">'+ "<p>"+"Two Models (Texture and Light)"+":  "+this.gpuimgs['110']+"</p>"+ '</div>');  
+              document.write('<div align="center">'+ "<p>"+"Threejs Light"+":  "+this.gpuimgs['113']+"</p>"+ '</div>'); 
+              document.write('<div align="center">'+ "<p>"+"Threejs Clip)"+":  "+this.gpuimgs['114']+"</p>"+ '</div>'); 
+              document.write('<div align="center">'+ "<p>"+"Threejs Bubble"+":  "+this.gpuimgs['115']+"</p>"+ '</div>'); 
+              document.write('<div align="center">'+ "<p>"+"Threejs Compressed"+":  "+this.gpuimgs['116']+"</p>"+ '</div>'); 
+                            document.write('<div align="center">'+ "<p>"+"Threejs Shadow"+":  "+this.gpuimgs['117']+"</p>"+ '</div>'); 
+                            
     var a = ["Cube Normal","Cube Anti-aliasing", "Camera","Line Normal", "Line Anti-aliasing", "Texture Susan", "Texture Combined", "Simple Light Susan", "Simple Light Combined","More Light","Two Texture More Light","aaaa", "Transparent"]
     k = 0;
     for ( var key in this.gpuimgs) {
