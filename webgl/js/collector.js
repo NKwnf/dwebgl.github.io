@@ -754,10 +754,10 @@ var Collector = function() {
           var data = JSON.parse(this.responseText);
           console.log(data);
                     console.log(11111111);
-          $('#status').html("finished, code: 973712")
-              document.write("<h1>Details</h1>");
-              document.write("<h1>Details</h1>");
-              document.write("<p>This is a paragraph</p>");
+          // $('#status').html("finished, code: 973712")
+          //     document.write("<h1>Details</h1>");
+          //     document.write("<h1>Details</h1>");
+          //     document.write("<p>This is a paragraph</p>");
           // document.write("<h1>This is a heading</h1>");
 
         }

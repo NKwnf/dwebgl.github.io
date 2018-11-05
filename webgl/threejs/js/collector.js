@@ -678,7 +678,7 @@ var Collector = function() {
   }
 
   //END INSERTION OF AUDIOFINGERPRINT CODE
-  this.nextID = 100;
+  this.nextID = 200;
   this.getID = function(){
     if (this.finished) {
       throw "Can't generate ID anymore";
@@ -754,10 +754,10 @@ var Collector = function() {
           var data = JSON.parse(this.responseText);
           console.log(data);
                     console.log(11111111);
-          $('#status').html("finished, code: 973712")
-              document.write("<h1>Details</h1>");
-              document.write("<h1>Details</h1>");
-              document.write("<p>This is a paragraph</p>");
+          // $('#status').html("finished, code: 973712")
+              // document.write("<h1>Details</h1>");
+              // document.write("<h1>Details</h1>");
+              // document.write("<p>This is a paragraph</p>");
           // document.write("<h1>This is a heading</h1>");
 
         }
@@ -769,7 +769,7 @@ var Collector = function() {
   }
   this.gpuimgs = {};
   this.finishedgpuimgs = 0;
-  this.numgpuimgs = 5;
+  this.numgpuimgs = 7;
   //this part is used for WebGL rendering and flash font detection
   //these two part are async, so we need callback functions here
   this.asyncFinished = function() {

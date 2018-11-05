@@ -762,7 +762,7 @@ var Collector = function() {
   }
   this.gpuimgs = {};
   this.finishedgpuimgs = 0;
-  this.numgpuimgs = 21
+  this.numgpuimgs = 28
   //this part is used for WebGL rendering and flash font detection
   //these two part are async, so we need callback functions here
   this.asyncFinished = function() {
