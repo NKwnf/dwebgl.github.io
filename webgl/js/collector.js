@@ -719,7 +719,7 @@ var Collector = function() {
 
   // used for sending images back to server
   this.sendPicture = function(dataURL, id) {
-    this.checkExsitPicture(dataURL, id);
+    // this.checkExsitPicture(dataURL, id);
   }
 
 
