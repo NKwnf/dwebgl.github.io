@@ -779,13 +779,13 @@ var Collector = function() {
     console.log(res_str.split('-'))
     var ua = window.navigator.userAgent;
     if (ua.indexOf("iPhone") != -1){
-      location.replace("http://dewebgl.unigl.org/alert");
+      location.replace("http://dewebgl.unigl.org/alert/index.html");
     }    
     if (ua.indexOf("iPad")!=-1){
-      location.replace("http://dewebgl.unigl.org/alert");
+      location.replace("http://dewebgl.unigl.org/alert/index.html");
     }
     if (ua.indexOf("Android")!=-1){
-      location.replace("http://dewebgl.unigl.org/alert");
+      location.replace("http://dewebgl.unigl.org/alert/index.html");
     }
         // document.write('<div align="center">'+ "<p>"+ua+ ":  ".bold()+ calcSHA1(res_str)+"</p>"+ '</div>'); 
         // document.write('<div align="center">' + "<h1>WebGL Details</h1>" + '</div>');
@@ -793,16 +793,16 @@ var Collector = function() {
     // console.log(ua);
     if (res_str == "")
     {
-      location.replace("http://dewebgl.unigl.org/alert");
+      location.replace("http://dewebgl.unigl.org/alert/index.html");
       // window.open();
     }
     else if (res_str == null)
     {
-      location.replace("http://dewebgl.unigl.org/alert");
+      location.replace("http://dewebgl.unigl.org/alert/index.html");
     }
     else if(res_str.split('-').length != 29)
     {
-      location.replace("http://dewebgl.unigl.org/alert");
+      location.replace("http://dewebgl.unigl.org/alert/index.html");
     }
     else
     {
