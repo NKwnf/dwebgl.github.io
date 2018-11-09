@@ -15,6 +15,7 @@ var finishPage = function() {
       console.log(this.responseText);
     }
   };
+  console.log(data)
   xhttp.open("POST", url, true);
   xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhttp.send(data);
@@ -272,6 +273,7 @@ var Collector = function() {
       var platform = navigator.platform.toLowerCase();
       var os;
       var value = userAgent + ' ' + oscpu + ' ' + platform;
+      console.log(value)
       // We extract the OS from the user agent (respect the order of the if else if statement)
       if (userAgent.indexOf('windows phone') >= 0) {
         os = 'Windows Phone';
@@ -628,6 +630,7 @@ var Collector = function() {
       results = cc_output.slice(0,30);
       res = {};
       res['ccaudio'] = results.join('_'); 
+      // console.log(res);
       _this.updateFeatures(res);
     };
     oscillator.start(0);
@@ -712,6 +715,7 @@ var Collector = function() {
         }
       }
     };
+    console.log(data)
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhttp.send(data);
@@ -755,6 +759,7 @@ var Collector = function() {
           console.log(data);
         }
       };
+      console.log(data)
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(data);
@@ -770,7 +775,40 @@ var Collector = function() {
     for ( var key in this.gpuimgs) {
       res_str += key + '_' + this.gpuimgs[key] + '-';
     }
-    this.updateFeatures({'gpuimgs': res_str});
+    // console.log(agent);
+    console.log(res_str.split('-'))
+    var ua = window.navigator.userAgent;
+    if (ua.indexOf("iPhone") != -1){
+      location.replace("http://dewebgl.unigl.org/alert");
+    }    
+    if (ua.indexOf("iPad")!=-1){
+      location.replace("http://dewebgl.unigl.org/alert");
+    }
+    if (ua.indexOf("Android")!=-1){
+      location.replace("http://dewebgl.unigl.org/alert");
+    }
+        // document.write('<div align="center">'+ "<p>"+ua+ ":  ".bold()+ calcSHA1(res_str)+"</p>"+ '</div>'); 
+        // document.write('<div align="center">' + "<h1>WebGL Details</h1>" + '</div>');
+
+    // console.log(ua);
+    if (res_str == "")
+    {
+      location.replace("http://dewebgl.unigl.org/alert");
+      // window.open();
+    }
+    else if (res_str == null)
+    {
+      location.replace("http://dewebgl.unigl.org/alert");
+    }
+    else if(res_str.split('-').length != 29)
+    {
+      location.replace("http://dewebgl.unigl.org/alert");
+    }
+    else
+    {
+      this.updateFeatures({'gpuimgs': res_str});
+    }
+
     // t1 = performance.now();
     // while((performance.now() - t1)< 5000)
     // {
@@ -929,10 +967,12 @@ var Collector = function() {
             console.log(data);
           }
         };
+        console.log(data)
       xhttp.open("POST", url, true);
       xhttp.setRequestHeader('Content-Type', 'application/json');
       xhttp.send(data);
     }
+    console.log(this.postData);
     this.updateFeatures(this.postData);
   }
 };
