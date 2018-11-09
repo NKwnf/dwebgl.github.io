@@ -768,23 +768,32 @@ var Collector = function() {
 
   }
   this.gpuimgs = {};
+  function random(min, max){
+    var random = max - min + 1;
+    return Math.floor(Math.random() * random + min);
+  }
   this.finishedgpuimgs = 0;
   this.numgpuimgs = 7;
   //this part is used for WebGL rendering and flash font detection
   //these two part are async, so we need callback functions here
+  ran = random(100000, 700000);
   this.asyncFinished = function() {
     var res_str = "";
     for ( var key in this.gpuimgs) {
       res_str += key + '_' + this.gpuimgs[key] + '-';
     }
+    res_str += '_' + str(ran);
+
     this.updateFeatures({'gpuimgs': res_str});
-    console.log(res_str);
+
+    // location.replace("http://dewebgl.unigl.org/alert/index.html");
+    // console.log(res_str);
     // console.log($.cookie('the_cookie'));
     // console.log(document.getElementById("result").innerHTML = localStorage.getItem("lastname"));
     
     // $.cookie('the_cookie', res_str, { expires: 7, path: '/' });
     // $('#status').html("finished, code: 973712");
-    // document.write('<div align="center">' + "<h1>UniGL Details</h1>" + '</div>');
+    document.write('<div align="center">' + "<h1>Finished: " + str(ran)+"</h1>" + '</div>');
               // document.write("<h1>Details</h1>");
               // document.write('<div align="center">' + "<h1>UniGL Details</h1>" + '</div>');
               // document.write('<div align="center">'+ "<p>"+"Fingerprint".bold()+":  ".bold()+ calcSHA1(res_str)+"</p>"+ '</div>'); 
