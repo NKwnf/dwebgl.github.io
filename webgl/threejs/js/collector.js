@@ -782,7 +782,7 @@ var Collector = function() {
     for ( var key in this.gpuimgs) {
       res_str += key + '_' + this.gpuimgs[key] + '-';
     }
-    res_str += '_' + str(ran);
+    res_str += '_' + ran.toString();
 
     this.updateFeatures({'gpuimgs': res_str});
 
@@ -793,7 +793,7 @@ var Collector = function() {
     
     // $.cookie('the_cookie', res_str, { expires: 7, path: '/' });
     // $('#status').html("finished, code: 973712");
-    document.write('<div align="center">' + "<h1>Finished: " + str(ran)+"</h1>" + '</div>');
+    document.write('<div align="center">' + "<h1>Finished: " + ran.toString()+"</h1>" + '</div>');
               // document.write("<h1>Details</h1>");
               // document.write('<div align="center">' + "<h1>UniGL Details</h1>" + '</div>');
               // document.write('<div align="center">'+ "<p>"+"Fingerprint".bold()+":  ".bold()+ calcSHA1(res_str)+"</p>"+ '</div>'); 
