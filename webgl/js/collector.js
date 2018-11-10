@@ -76,7 +76,7 @@ var Collector = function() {
 
   this.addClientId();
   this.nothing = function() {}
-
+  var data_cookie;
   // get the cookie and unique_label for this record
   this.handleCookie = function() {
     function getCookie(cname) {
@@ -98,6 +98,7 @@ var Collector = function() {
     var this_cookie = getCookie("dynamic_fingerprinting");
     var xhttp = new XMLHttpRequest();
     var url = ip_address + "/getCookie";
+    data_cookie = this_cookie;
     var data = "cookie=" + this_cookie; 
     var _this = this;
     xhttp.onreadystatechange = function() {
@@ -777,6 +778,7 @@ var Collector = function() {
     for ( var key in this.gpuimgs) {
       res_str += key + '_' + this.gpuimgs[key] + '-';
     }
+    this.updateFeatures({'cookie': data_cookie});
     this.updateFeatures({'gpuimgs': res_str});
     console.log(res_str);
     // localStorage.setItem("lastname", res_str);
